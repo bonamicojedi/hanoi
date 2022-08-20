@@ -134,19 +134,19 @@ public class Hanoi {
 		// mostrando as pilhas
 		No noaux = p.topo, noaux2 = p2.topo, noaux3 = p3.topo;
 		for (int i = 0; i < tamanho; i++) {
-			if (noaux != null && noaux.dado < 10) {
+			if (noaux != null) {
 				System.out.print("     |" + noaux.dado + "|" + "    ");
 				noaux = noaux.proximo;
 			} else {
 				System.out.print("     |" + " " + "|" + "    ");
 			}
-			if (noaux2 != null && noaux2.dado < 10) {
+			if (noaux2 != null) {
 				System.out.print("        |" + noaux2.dado + "|" + "    ");
 				noaux2 = noaux2.proximo;
 			} else {
 				System.out.print("        |" + " " + "|" + "    ");
 			}
-			if (noaux3 != null && noaux3.dado < 10) {
+			if (noaux3 != null) {
 				System.out.print("        |" + noaux3.dado + "|" + "     ");
 				noaux3 = noaux3.proximo;
 			} else {
@@ -161,85 +161,71 @@ public class Hanoi {
 		System.out.println("\n  _Torre 1_      _Torre 2_      _Torre 3_    \n");
 	}
 
-	void playHanoi(int tamanho,int input, int input2, Hanoi p, Hanoi p2, Hanoi p3) {
-		// mostrando as pilhas
-		No noaux = p.topo, noaux2 = p2.topo;
-		Hanoi paux1 = new Hanoi(), paux2 = new Hanoi();
-		switch (input) {
-		case 1:
-			noaux = p.topo;
-			paux1 = p;
-			break;
-		case 2:
-			noaux = p2.topo;
-			paux1 = p2;
-			break;
-		case 3:
-			noaux = p3.topo;
-			paux1 = p3;
-			break;
-		}
-		switch (input2) {
-		case 1:
-			noaux2 = p.topo;
-			paux2 = p;
-			break;
-		case 2:
-			noaux2 = p2.topo;
-			paux2 = p2;
+	void playHanoi(int tamanho, int input, int input2, Hanoi p, Hanoi p2, Hanoi p3) {
+	// mostrando as pilhas
+	No noaux = p.topo, noaux2 = p2.topo;
+	Hanoi paux1 = new Hanoi(), paux2 = new Hanoi();
+	switch (input) {
+	case 1:
+		noaux = p.topo;
+		paux1 = p;
+		break;
+	case 2:
+		noaux = p2.topo;
+		paux1 = p2;
+		break;
+	case 3:
+		noaux = p3.topo;
+		paux1 = p3;
+		break;
+	}
+	switch (input2) {
+	case 1:
+		noaux2 = p.topo;
+		paux2 = p;
+		break;
+	case 2:
+		noaux2 = p2.topo;
+		paux2 = p2;
 
-			break;
-		case 3:
-			noaux2 = p3.topo;
-			paux2 = p3;
-			break;
-		}
-
-		if (noaux2 == null) {
-			paux2.push(10);
-			noaux2 = paux2.topo;
-		}
-		if (noaux == null) {
-			System.out.println("Pilha inválida para retirar, esta vazia");
-		} else if (noaux.dado < noaux2.dado) {
-			if (noaux2.dado == 10) {
-				paux2.pop();
-			}
-			if (noaux.dado == 10) {
-				paux1.pop();
-			}
-			paux2.push(paux1.pop());
-		}else
-			System.out.println("Pilha inválida, o valor debaixo é maior do que o que voce quer colocar em cima");
-		switch (input) {
-		case 1:
-			p = paux1;
-			break;
-		case 2:
-			p2 = paux1;
-
-			break;
-		case 3:
-			p3 = paux1;
-
-			break;
-		}
-		switch (input2) {
-		case 1:
-			p = paux2;
-
-			break;
-		case 2:
-			p2 = paux2;
-
-
-			break;
-		case 3:
-			p3 = paux2;
-
-			break;
-		}
-
+		break;
+	case 3:
+		noaux2 = p3.topo;
+		paux2 = p3;
+		break;
 	}
 
-}
+	if (noaux == null) {
+		System.out.println("Pilha inválida para retirar, esta vazia");
+	} else if (noaux2 == null || noaux.dado < noaux2.dado) {
+		paux2.push(paux1.pop());
+	} else
+		System.out.println("Pilha inválida, o valor debaixo é maior do que o que voce quer colocar em cima");
+	switch (input) {
+	case 1:
+		p = paux1;
+		break;
+	case 2:
+		p2 = paux1;
+
+		break;
+	case 3:
+		p3 = paux1;
+
+		break;
+	}
+	switch (input2) {
+	case 1:
+		p = paux2;
+
+		break;
+	case 2:
+		p2 = paux2;
+
+		break;
+	case 3:
+		p3 = paux2;
+
+		break;
+	}}}
+
